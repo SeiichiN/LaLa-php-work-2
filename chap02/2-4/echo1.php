@@ -1,4 +1,4 @@
 <?php
-echo "こんにちは";
+echo 'こんにちは';
 echo "<br>";
 echo("ありがとう");
