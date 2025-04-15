@@ -1,0 +1,4 @@
+<script>alert(document.cookie)</script>
+
+
+<script>alert('ウィルス発見\n至急お電話ください\n000-1234-5678')</script>
