@@ -44,9 +44,12 @@ require_once('../../common/header.php');
                   <?php echo ($sex == '女性' ? 'checked' : '') ?>>女性</label>
         </li>
         <li><span>結婚：</span>
-          <label><input type="radio" name="marriage" value="独身">独身</label>
-          <label><input type="radio" name="marriage" value="既婚">既婚</label>
-          <label><input type="radio" name="marriage" value="同棲中">同棲中</label>
+          <label><input type="radio" name="marriage" value="独身"
+                  <?php echo ($marriage == '独身' ? 'checked' : '') ?>>独身</label>
+          <label><input type="radio" name="marriage" value="既婚"
+                  <?php echo ($marriage == '既婚' ? 'checked' : '') ?>>既婚</label>
+          <label><input type="radio" name="marriage" value="同棲中"
+                  <?php echo ($marriage == '同棲中' ? 'checked' : '') ?>>同棲中</label>
         </li>
         <li><input type="submit" value="送信する"></li>
       </ul>
