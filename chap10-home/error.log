@@ -1,0 +1,18 @@
+Warning:  session_start(): open(/var/lib/php/sessions/sess_d9sbhgbl74187cemua8r75kmjp, O_RDWR) failed: Permission denied (13) in /home/se-ichi/public_html/invalid_start.php on line 10; PHP message: PHP Stack trace:; PHP message: PHP   1. {main}() /home/se-ichi/public_html/invalid_start.php:0; PHP message: PHP   2. session_start() /home/se-ichi/public_html/invalid_start.php:10; PHP message: PHP Warning:  session_start(): Failed to read session data: files (path: /var/lib/php/sessions) in /home/se-ichi/public_html/invalid_start.php on line 10; PHP message: PHP Stack trace:; PHP message: PHP   1. {main}() /home/se-ichi/public_html/invalid_start.php:0; PHP message: PHP   2. session_start() /home/se-ichi/public_html/invalid_start.php:10'
+
+
+$ cd /var/lib/php
+$ ls -l
+drwx-wx-wt  2 root root 4096  4月 23 09:39 sessions/
+
+$ sudo chmod 0775 sessions
+$ sudo chown www-data:www-data sessions
+
+$ ls -l
+drwxrwxr-x  2 www-data www-data 4096  4月 23 10:09 sessions/
+
+
+
+
+
+
