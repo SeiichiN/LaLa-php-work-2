@@ -25,6 +25,9 @@ function printError(array $errors) {
   }
   echo '</ol>';
 }
-?>
 
-
+function printErrorString(array $errors) {
+  echo '<span class="error">';
+  echo implode('<br>', $errors);
+  echo '</span><br>';
+}

@@ -1,7 +1,5 @@
-
 <?php
-ini_set('display_errors', '1');
-ini_set('error_reporting', 'E_ALL');
+ob_start();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -12,6 +10,8 @@ ini_set('error_reporting', 'E_ALL');
   <body>
     <h1>実験</h1>
     <?php
+      echo "ここで出力しています。\n";
+      ob_end_flush();
       session_start();
     ?>
   </body>

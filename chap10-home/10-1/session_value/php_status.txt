@@ -1,0 +1,5 @@
+output_buffering => 0 => 0
+display_errors => STDOUT => STDOUT
+xdebug.force_display_errors => On => On
+error_reporting => 32767 => 32767
+xdebug.force_error_reporting => 0 => 0
