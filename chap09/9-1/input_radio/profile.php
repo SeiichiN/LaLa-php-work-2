@@ -1,6 +1,10 @@
 <?php
 require_once('../../lib/util2.php');
-checkEncode($_POST);
+
+if (!mb_check_encoding($_POST, 'UTF-8')) {
+  $err = "Encoding Error! The expected encoding is UTF-8";
+  die($err);  
+}
 $error = [];
 if (isset($_POST['sex'])) {
   $sexValues = ['男性', '女性'];
@@ -38,9 +42,15 @@ function checked(string $value, array $checkedValues) {
   }
 }
 ?>
-<?php //----------- 画面表示 -------------------------
-require_once('../../common/header.php');
-?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+
 <body>
   <div>
     <form method="post" action="">
