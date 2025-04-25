@@ -25,3 +25,4 @@ function printError(array $errors) {
   }
   echo '</ol>';
 }
+
