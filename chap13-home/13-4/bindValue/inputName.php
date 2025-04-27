@@ -6,10 +6,8 @@
   <title>Document</title>
 </head>
 <body>
-  <form action="bindValue.php" method="post">
-    年齢(min)：<input type="number" name="min"><br>
-    年齢(max)：<input type="number" name="max"><br>
-    性別：<input type="text" name="sex"><br>
+  <form action="bindName_injection.php" method="post">
+    名前：<input type="text" name="name"><br>
     <input type="submit" value="送信">
   </form>
 </body>

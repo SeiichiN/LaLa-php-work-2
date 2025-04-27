@@ -5,30 +5,12 @@ $password = 'testuser';
 $dbName = 'testdb';
 $host = 'localhost:3306';
 $dsn = "mysql:host={$host};dbname={$dbName};charset=utf8";
-
-if (isset($_POST['min'])) {
-  $min = $_POST['min'];
-  if (!ctype_digit($min)) {
-    $min = '0';
-  }
+?>
+<?php
+if (isset($_POST['name'])) {
+  $name = $_POST['name'];
 } else {
-  $min = '0';
-}
-if (isset($_POST['max'])) {
-  $max = $_POST['max'];
-  if (!ctype_digit($max)) {
-    $max = '100';
-  }
-} else {
-  $max = '100';
-}
-if (isset($_POST['sex'])) {
-  $sex = $_POST['sex'];
-  if (!in_array($sex, ['男', '女'])) {
-    $sex = '男';
-  }
-} else {
-  $sex = '男';
+  $name = '';
 }
 ?>
 <!DOCTYPE html>
@@ -48,20 +30,15 @@ if (isset($_POST['sex'])) {
       $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       echo "データベース{$dbName}に接続しました。";
-      $sql = "SELECT * FROM member " . 
-             " WHERE age >= :min AND age <= :max AND sex = :sex";
+      $sql = "SELECT * FROM member WHERE name like '%{$name}%'";
       $stm = $pdo->prepare($sql);
-      $stm->bindValue(':min', $min, PDO::PARAM_INT);
-      $stm->bindValue(':max', $max, PDO::PARAM_INT);
-      $stm->bindValue(':sex', $sex, PDO::PARAM_STR);
-      $foo = $stm->execute();
+      $stm->execute();
       $result = $stm->fetchAll(PDO::FETCH_ASSOC);
       echo "<table>";
       echo "<thead><tr>";
       echo "<th>", "ID", "</th>";
       echo "<th>", "名前", "</th>";
       echo "<th>", "年齢", "</th>";
-      echo "<th>", "性別", "</th>";
       echo "</tr></thead>";
       echo "<tbody>";
       foreach ($result as $row) {
@@ -69,7 +46,6 @@ if (isset($_POST['sex'])) {
         echo "<td>", h($row['id']), "</td>";
         echo "<td>", h($row['name']), "</td>";
         echo "<td>", h($row['age']), "</td>";
-        echo "<td>", h($row['sex']), "</td>";
         echo "</tr>";
       }
       echo "</tbody>";

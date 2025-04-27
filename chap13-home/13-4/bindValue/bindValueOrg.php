@@ -5,31 +5,6 @@ $password = 'testuser';
 $dbName = 'testdb';
 $host = 'localhost:3306';
 $dsn = "mysql:host={$host};dbname={$dbName};charset=utf8";
-
-if (isset($_POST['min'])) {
-  $min = $_POST['min'];
-  if (!ctype_digit($min)) {
-    $min = '0';
-  }
-} else {
-  $min = '0';
-}
-if (isset($_POST['max'])) {
-  $max = $_POST['max'];
-  if (!ctype_digit($max)) {
-    $max = '100';
-  }
-} else {
-  $max = '100';
-}
-if (isset($_POST['sex'])) {
-  $sex = $_POST['sex'];
-  if (!in_array($sex, ['男', '女'])) {
-    $sex = '男';
-  }
-} else {
-  $sex = '男';
-}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -51,9 +26,9 @@ if (isset($_POST['sex'])) {
       $sql = "SELECT * FROM member " . 
              " WHERE age >= :min AND age <= :max AND sex = :sex";
       $stm = $pdo->prepare($sql);
-      $stm->bindValue(':min', $min, PDO::PARAM_INT);
-      $stm->bindValue(':max', $max, PDO::PARAM_INT);
-      $stm->bindValue(':sex', $sex, PDO::PARAM_STR);
+      $stm->bindValue(':min', 20.5, PDO::PARAM_INT);
+      $stm->bindValue(':max', 40.789, PDO::PARAM_INT);
+      $stm->bindValue(':sex', '女', PDO::PARAM_STR);
       $foo = $stm->execute();
       $result = $stm->fetchAll(PDO::FETCH_ASSOC);
       echo "<table>";
