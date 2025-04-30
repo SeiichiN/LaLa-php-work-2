@@ -3,6 +3,9 @@
 body, h1, h2, p {
   margin: 0;
 }
+ul {
+  padding-left: 0;
+}
 
 header {
   background-color: #7aff99;
@@ -17,6 +20,7 @@ header h1 {
   width: 1000px;
   margin: 0 auto 60px;
   display: flex;
+  justify-content: space-between;
 }
 footer {
   background-color: #7aff99;
