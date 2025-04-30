@@ -24,9 +24,11 @@ $dsn = "mysql:host={$host};dbname={$dbName};charset=utf8";
       $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       echo "データベース{$dbName}に接続しました";
-      $sql = <<< HHH
-SELECT * FROM member 
-HHH;
+      $sql = "UPDATE member SET name = '新倉立尾' WHERE id = 5;";
+      $stm = $pdo->prepare($sql);
+      $stm->execute();
+
+      $sql = "SELECT * FROM member WHERE id = 5";
       $stm = $pdo->prepare($sql);
       $stm->execute();
       $result = $stm->fetchAll(PDO::FETCH_ASSOC);
