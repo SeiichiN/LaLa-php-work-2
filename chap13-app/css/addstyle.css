@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+body, h1, h2, p {
+  margin: 0;
+}
+
+header {
+  background-color: #7aff99;
+  padding: 1em 0;
+  margin-bottom: 1em;
+}
+header h1 {
+  width: 1000px;
+  margin: 0 auto;
+}
+.content {
+  width: 1000px;
+  margin: 0 auto 60px;
+  display: flex;
+}
+footer {
+  background-color: #7aff99;
+  padding: 1em 0;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+table {
+  margin: 0;
+}
+table tr td {
+  padding: 5px 8px;
+}
+
+main {
+  flex: 1 1 auto;
+}
+aside {
+  flex: 0 0 200px;
+}

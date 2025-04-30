@@ -24,9 +24,12 @@ $dsn = "mysql:host={$host};dbname={$dbName};charset=utf8";
       $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       echo "データベース{$dbName}に接続しました";
-      $sql = <<< HHH
-SELECT * FROM member 
-HHH;
+      $sql = "DELETE FROM member WHERE sex = '男'";
+      $stm = $pdo->prepare($sql);
+      $rrr = $stm->execute();
+      // var_dump($rrr);   // true
+
+      $sql = "SELECT * FROM member";
       $stm = $pdo->prepare($sql);
       $stm->execute();
       $result = $stm->fetchAll(PDO::FETCH_ASSOC);

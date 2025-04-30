@@ -25,8 +25,16 @@ $dsn = "mysql:host={$host};dbname={$dbName};charset=utf8";
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       echo "データベース{$dbName}に接続しました";
       $sql = <<< HHH
-SELECT * FROM member 
+INSERT INTO member (name, age, sex) VALUES
+('菅田光子', 31, '女'),
+('高田久美子', 44, '女'),
+('青柳次郎', 35, '男');
 HHH;
+      $stm = $pdo->prepare($sql);
+      $rrr = $stm->execute();
+      // var_dump($rrr);   // true
+
+      $sql = "SELECT * FROM member";
       $stm = $pdo->prepare($sql);
       $stm->execute();
       $result = $stm->fetchAll(PDO::FETCH_ASSOC);

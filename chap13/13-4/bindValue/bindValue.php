@@ -19,6 +19,9 @@ $dsn = "mysql:host={$host};dbname={$dbName};charset=utf8";
 <body>
   <div>
     <?php
+    $min = 20;
+    $max = 40;
+    $sex = '男ｆ';
     try {
       $pdo = new PDO($dsn, $user, $password);
       $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -26,8 +29,12 @@ $dsn = "mysql:host={$host};dbname={$dbName};charset=utf8";
       echo "データベース{$dbName}に接続しました";
       $sql = <<< HHH
 SELECT * FROM member 
+WHERE age >= :min AND age <= :max AND sex = :sex
 HHH;
       $stm = $pdo->prepare($sql);
+      $stm->bindValue(':min', $min, PDO::PARAM_INT);
+      $stm->bindValue(':max', $max, PDO::PARAM_INT);
+      $stm->bindValue(':sex', $sex, PDO::PARAM_STR);
       $stm->execute();
       $result = $stm->fetchAll(PDO::FETCH_ASSOC);
       echo "<table>";
