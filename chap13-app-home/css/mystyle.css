@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+body, h1, h2, p {
+  margin: 0;
+}
+
+header {
+  background-color: #7afff8;
+  padding: 1em 0;
+}
+
+footer {
+  background-color: #7afff8;
+  padding: 1em 0;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+header h1, 
+.content {
+  width: 1000px;
+  margin: 0 auto;
+}
