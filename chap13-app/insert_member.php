@@ -1,6 +1,6 @@
 <?php
-require_once('../../lib/util2.php');
-$gobackURL = "insertForm.html";
+require_once('lib/util2.php');
+$gobackURL = "insertForm.php";
 
 if (!mb_check_encoding($_POST, "UTF-8")) {
   header("Location: {$gobackURL}");
@@ -25,24 +25,11 @@ if (count($errors) > 0) {
   echo "<a href=", $gobackURL, ">戻る</a>";
   exit();
 }
+require_once('common/dbSettings.php');
 
-$user = 'testuser';
-$password = 'testuser';
-$dbName = 'testdb';
-$host = 'localhost:3306';
-$dsn = "mysql:host={$host};dbname={$dbName};charset=utf8";
 ?>
-
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="../../css/style.css">
-  <link rel="stylesheet" href="../../css/tablestyle.css">
-</head>
-<body>
+<?php require_once('common/header.php') ?>
+<main>
   <div>
     <?php
     $name = $_POST['name'];
@@ -52,7 +39,6 @@ $dsn = "mysql:host={$host};dbname={$dbName};charset=utf8";
       $pdo = new PDO($dsn, $user, $password);
       $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      echo "データベース{$dbName}に接続しました";
       $sql = <<< HHH
 INSERT INTO member (name, age, sex) 
 VALUES (:name, :age, :sex)
@@ -63,28 +49,9 @@ HHH;
       $stm->bindValue(':sex', $sex, PDO::PARAM_STR);
       $rrr = $stm->execute();
       if ($rrr) {
-        $sql = "SELECT * FROM member";
-        $stm = $pdo->prepare($sql);
-        $stm->execute();
-        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
-        echo "<table>";
-        echo "<thead><tr>"; 
-        echo "<th>", "ID", "</th>";
-        echo "<th>", "名前", "</th>";
-        echo "<th>", "年齢", "</th>";
-        echo "<th>", "性別", "</th>";
-        echo "</tr></thead>";
-        echo "<tbody>"; 
-        foreach ($result as $row) {
-          echo "<tr>"; 
-          echo "<td>", h($row['id']), "</td>";
-          echo "<td>", h($row['name']), "</td>";
-          echo "<td>", h($row['age']), "</td>";
-          echo "<td>", h($row['sex']), "</td>";
-          echo "</tr>";
-        } // foreach end
-        echo "</tbody>";
-        echo "</table>";
+        echo "<p>新規登録できました。</p>";
+        echo '<a href="index.php">一覧へ</a>';
+        // exit();
       } else {
         echo '<span class="error">追加エラーがありました</span>';
       }  // if end
@@ -97,5 +64,8 @@ HHH;
     <hr>
     <p><a href="<?php echo $gobackURL ?>">もどる</a></p>
   </div>
-</body>
-</html>
+</main>
+<?php
+require_once('common/aside.php');
+require_once('common/footer.php');
+

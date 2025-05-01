@@ -29,7 +29,7 @@ footer {
 table {
   margin: 0;
 }
-table tr td {
+table tr * {
   padding: 5px 8px;
 }
 
