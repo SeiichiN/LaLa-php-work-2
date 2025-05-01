@@ -24,24 +24,10 @@ try {
     $name = $result[0]['name'];
     $age = $result[0]['age'];
     $sex = $result[0]['sex'];
-    echo "<table>";
-    echo "<tr>";
-    echo "<th>ID</th>";
-    echo "<td>", h($id), "</td>";
-    echo "</tr>";
-    echo "<tr>";
-    echo "<th>名前</th>";
-    echo "<td>", h($name), "</td>";
-    echo "</tr>";
-    echo "<tr>";
-    echo "<th>年齢</th>";
-    echo "<td>", h($age), "</td>";
-    echo "</tr>";
-    echo "<tr>";
-    echo "<th>性別</th>";
-    echo "<td>", h($sex), "</td>";
-    echo "</tr>";
-    echo "</table>";
+    require_once('common/printUpdate.php');
+  } else {
+    echo "<p>そのデータは見つかりません</p>";
+    echo '<p><a href="index.php">もどる</a></p>';
   }
 } catch (Exception $e) {
   echo $e->getMessage();
